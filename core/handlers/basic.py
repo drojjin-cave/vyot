@@ -17,7 +17,7 @@ async def get_start(message: Message, bot: Bot):
     else:
         await bot.send_photo(message.from_user.id, photo=FSInputFile(path=photo), caption=text, reply_markup=user_menu_inline())
 
-
+# тест
 
 async def knopka1(message: Message, bot: Bot):
     await message.answer(f'Действие по кнопке 1', reply_markup=get_reply_keyboard())
