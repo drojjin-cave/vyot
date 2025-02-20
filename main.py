@@ -17,6 +17,9 @@ async def start_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text='Бот запущен!')
 
 
+async def test(bot: Bot):
+    await bot.send_message(settings.bots.admin_id, text='Тест!')
+
 async def stop_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text='Бот остановлен!')
 
