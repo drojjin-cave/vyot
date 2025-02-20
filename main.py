@@ -23,6 +23,7 @@ async def test(bot: Bot):
 async def stop_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text='Бот остановлен!')
 
+# еще тест
 
 
 
