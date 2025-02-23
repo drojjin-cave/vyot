@@ -21,4 +21,4 @@ jobs:
           git pull origin master
           git status
           npm install --only=prod
-          pm2 restart gh-vyot-bot_v2
+          pm2 restart tg-vyot
