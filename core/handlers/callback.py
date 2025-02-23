@@ -13,6 +13,13 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
     photo = "core/pictures/vpn.jpg"
 
     text = """Добро пожаловать! Здесь ты найдешь лучший VPN!
+    
+    Возможности:
+    Смотрите YouTube в 4K без задержек
+    Неограниченный трафик и высокая скорость
+    Полная анонимность
+    Доступ к заблокированным сайтам и сервисам
+    Подключение за 1 клик без сложных настроек
      """
     if connect:
         await bot.send_photo(call.from_user.id, photo=FSInputFile(path=photo), caption=text, reply_markup=user_menu_inline())
