@@ -27,7 +27,7 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
         await call.message.answer('Что-то пошло не так')
 
     await call.answer()
-
+ # тест
 
 async def select_profile(call: CallbackQuery, bot: Bot):
 
