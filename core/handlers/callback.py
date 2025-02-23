@@ -30,11 +30,10 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
         await call.message.answer('Что-то пошло не так')
 
     await call.answer()
- # тест с приватным гитом 3
 
 async def select_profile(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('Тут твой профиль, и теперь с автодеплоем, приватный гит')
+    await call.message.answer('Тут твой профиль, и теперь с автодеплоем')
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()
@@ -42,7 +41,7 @@ async def select_profile(call: CallbackQuery, bot: Bot):
 
 async def select_test(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('Тут что-то про тестовый период приватный гит')
+    await call.message.answer('Тут что-то про тестовый период')
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()
