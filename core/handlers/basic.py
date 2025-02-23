@@ -3,19 +3,22 @@ from aiogram.types import Message, FSInputFile
 from core.keyboards.reply import get_reply_keyboard, register_keyboard, start_keyboard, user_menu_inline, user_menu_reply
 from core.utils.dbconnect import get_user
 
+text = """
+Добро пожаловать! Здесь ты найдешь лучший VPN!
+
+Возможности:
+Смотрите YouTube в 4K без задержек
+Неограниченный трафик и высокая скорость
+Полная анонимность
+Доступ к заблокированным сайтам и сервисам
+Подключение за 1 клик без сложных настроек
+"""
+
 
 async def get_start(message: Message, bot: Bot):
     photo = "core/pictures/vpn.jpg"
 
-    text = """Добро пожаловать! Здесь ты найдешь лучший VPN!
 
-    Возможности:
-    Смотрите YouTube в 4K без задержек
-    Неограниченный трафик и высокая скорость
-    Полная анонимность
-    Доступ к заблокированным сайтам и сервисам
-    Подключение за 1 клик без сложных настроек
-     """
 
     #await bot.send_photo(message.from_user.id, photo=FSInputFile(path=photo), caption=text, reply_markup=user_menu_inline())
     check = await get_user(message.from_user.id)
