@@ -20,7 +20,7 @@ async def start_bot(bot: Bot):
 async def stop_bot(bot: Bot):
     await bot.send_message(settings.bots.admin_id, text='Бот остановлен!')
 
-
+# тест коммита
 async def start():
     bot = Bot(token=settings.bots.bot_token)
 
