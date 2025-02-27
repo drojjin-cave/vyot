@@ -6,7 +6,7 @@ message = Message
 
 
 async def get_user(id_tg):
-    conn = await aiosqlite.connect('database.db')
+    conn = await aiosqlite.connect('../database.db')
     async with conn.cursor() as cur:
         try:
             await cur.execute(f"SELECT * FROM users WHERE id_tg={id_tg}")
@@ -17,7 +17,7 @@ async def get_user(id_tg):
 
 
 async def add_user(id_tg, name):
-    conn = await aiosqlite.connect('database.db')
+    conn = await aiosqlite.connect('../database.db')
     async with conn.cursor() as cur:
         try:
             await cur.execute(f"INSERT INTO users (id_tg, name) VALUES (?, ?)", (id_tg, name))
