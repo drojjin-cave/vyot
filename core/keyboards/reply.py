@@ -31,10 +31,10 @@ def start_keyboard():
 
 def user_menu_inline():
     keyboard_builder = InlineKeyboardBuilder()
-    keyboard_builder.button(text='👤Профиль', callback_data='профиль')
-    keyboard_builder.button(text='⏳Тестовый период', callback_data='тест')
-    keyboard_builder.button(text='ℹОбщая информация', callback_data='инфо')
-    keyboard_builder.button(text='🪙Тарифы', callback_data='тарифы')
+    keyboard_builder.button(text='▶️Попробовать', callback_data='профиль')
+    keyboard_builder.button(text='📜Инструкции', callback_data='тест')
+    keyboard_builder.button(text='🪙Тарифы', callback_data='инфо')
+    keyboard_builder.button(text='📢Помощь', callback_data='тарифы')
 
     keyboard_builder.adjust(2, 2)
     return keyboard_builder.as_markup()
