@@ -4,7 +4,7 @@ from core.keyboards.reply import get_reply_keyboard, register_keyboard, start_ke
 from core.utils.dbconnect import get_user
 
 text = """
-Добро пожаловать! Здесь ты найдешь лучший VPN!
+Добро пожаловать!
 
 Возможности:
 Смотрите YouTube в 4K без задержек

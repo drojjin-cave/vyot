@@ -5,7 +5,7 @@ from core.utils.dbconnect import add_user
 from core.keyboards.reply import user_menu_inline, user_menu_reply
 
 text = """
-Добро пожаловать! Здесь ты найдешь лучший VPN!
+Добро пожаловать!
 
 Возможности:
 Смотрите YouTube в 4K без задержек
@@ -33,7 +33,7 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
 
 async def select_profile(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('тест нового сервера')
+    await call.message.answer('Тут профиль')
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()
