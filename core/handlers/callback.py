@@ -33,7 +33,7 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
 
 async def select_profile(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('тест епт1')
+    await call.message.answer('тест нового сервера')
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()
