@@ -3,6 +3,8 @@ from aiogram.types import Message
 from aiogram.types import CallbackQuery, FSInputFile
 from core.utils.dbconnect import add_user
 from core.keyboards.reply import user_menu_inline, manual_inline
+import core.utils.manuals as manuals
+
 
 text = """
 Добро пожаловать!
@@ -62,6 +64,16 @@ async def select_help(call: CallbackQuery, bot: Bot):
 
     await call.message.answer('А здесь тарифы')
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
+
+    await call.answer()
+
+
+async def manual_android(call: CallbackQuery, bot: Bot):
+    '''Инструкция андроид'''
+
+    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
+    await call.message.answer(manuals.MANUAL_ANDROID, reply_markup=manual_inline())
+
 
     await call.answer()
 

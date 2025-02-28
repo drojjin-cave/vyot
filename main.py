@@ -2,6 +2,8 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import Command, CommandStart
 from aiogram import F
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
 import logging
 
 
@@ -23,7 +25,7 @@ async def stop_bot(bot: Bot):
 
 # тест коммита 2
 async def start():
-    bot = Bot(token=settings.bots.bot_token)
+    bot = Bot(token=settings.bots.bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     dp = Dispatcher()
 
@@ -41,6 +43,10 @@ async def start():
 
     # кнопки возврата
     dp.callback_query.register(back_from_manual, F.data == 'назад_из_инструкции')
+
+    # меню инструкций
+    dp.callback_query.register(manual_android, F.data == 'андроид')
+
 
 
     try:
