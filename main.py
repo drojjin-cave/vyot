@@ -29,18 +29,18 @@ async def start():
 
     dp.startup.register(start_bot)
     dp.shutdown.register(stop_bot)
-
-    # регистрация команд и фильтр по нажатию кнопок
     dp.message.register(get_start, CommandStart())
-    dp.message.register(knopka1, F.text == 'Кнопка 1')
-    dp.message.register(knopka2, F.text == 'Кнопка 2')
-    dp.message.register(knopka3, F.text == 'Кнопка 3')
 
+    # Главное меню
     dp.callback_query.register(select_ruls, F.data == 'правила')
-    dp.callback_query.register(select_profile, F.data == 'профиль')
-    dp.callback_query.register(select_test, F.data == 'тест')
-    dp.callback_query.register(select_info, F.data == 'инфо')
+
+    dp.callback_query.register(select_test, F.data == 'попробовать')
+    dp.callback_query.register(select_manual, F.data == 'инструкции')
     dp.callback_query.register(select_tarif, F.data == 'тарифы')
+    dp.callback_query.register(select_help, F.data == 'помощь')
+
+    # кнопки возврата
+    dp.callback_query.register(back_from_manual, F.data == 'назад_из_инструкции')
 
 
     try:
