@@ -2,6 +2,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import Command, CommandStart
 from aiogram import F
+import logging
 
 
 from core.handlers.basic import *
@@ -49,4 +50,5 @@ async def start():
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     asyncio.run(start())
