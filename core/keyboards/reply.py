@@ -24,8 +24,8 @@ def user_menu_inline():
 
 def manual_inline():
     keyboard_builder = InlineKeyboardBuilder()
-    keyboard_builder.button(text='▶️ Apple', callback_data='айфон')
-    keyboard_builder.button(text='📜 Android', callback_data='андроид')
+    keyboard_builder.button(text='📱 Apple', callback_data='айфон')
+    keyboard_builder.button(text='📳 Android', callback_data='андроид')
     keyboard_builder.button(text='🔙 Назад', callback_data='назад_из_инструкции')
 
     keyboard_builder.adjust(2, 1)

@@ -46,6 +46,7 @@ async def start():
 
     # меню инструкций
     dp.callback_query.register(manual_android, F.data == 'андроид')
+    dp.callback_query.register(manual_apple, F.data == 'айфон')
 
 
 
