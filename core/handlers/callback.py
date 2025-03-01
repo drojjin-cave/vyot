@@ -36,8 +36,12 @@ async def select_manual(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 async def back_from_manual(call: CallbackQuery, bot: Bot):
+    photo = "core/pictures/vpn.jpg"
 
-    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=user_menu_inline())
+    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                        reply_markup=None)
+    await call.message.answer_photo(photo=FSInputFile(path=photo), caption=manuals.TEXT_START,
+                                    reply_markup=user_menu_inline())
 
     await call.answer()
 
