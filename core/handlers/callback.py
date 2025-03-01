@@ -2,7 +2,7 @@ from aiogram import Bot
 from aiogram.types import Message
 from aiogram.types import CallbackQuery, FSInputFile
 from core.utils.dbconnect import add_user
-from core.keyboards.reply import user_menu_inline, manual_inline
+from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline
 import core.utils.manuals as manuals
 
 
@@ -46,15 +46,19 @@ async def back_from_manual(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 async def select_tarif(call: CallbackQuery, bot: Bot):
+    '''Выбор тарифа'''
+    photo = "core/pictures/tarif.jpg"
 
-    await call.message.answer('Здесь информация')
-    #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
+    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                        reply_markup=None)
+    await call.message.answer_photo(photo=FSInputFile(path=photo), caption='Выберите срок использования',
+                                    reply_markup=tarif_inline())
 
     await call.answer()
 
 async def select_help(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('А здесь тарифы')
+    await call.message.answer('Здесь помощь')
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()

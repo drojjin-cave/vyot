@@ -14,6 +14,7 @@ from core.settings import settings
 
 from core.handlers.callback import *
 from core.utils.comands import set_commands
+from core.handlers.callback_tarif import *
 
 async def start_bot(bot: Bot):
     await set_commands(bot)
@@ -43,10 +44,18 @@ async def start():
 
     # кнопки возврата
     dp.callback_query.register(back_from_manual, F.data == 'назад_из_инструкции')
+    dp.callback_query.register(back_from_manual, F.data == 'назад_из_тарифов')
 
     # меню инструкций
     dp.callback_query.register(manual_android, F.data == 'андроид')
     dp.callback_query.register(manual_apple, F.data == 'айфон')
+
+    #тарифы
+    dp.callback_query.register(month_pay, F.data == 'месяц')
+    dp.callback_query.register(thre_month_pay, F.data == '3_месяца')
+    dp.callback_query.register(six_month_pay, F.data == 'полгода')
+    dp.callback_query.register(year_pay, F.data == 'год')
+
 
 
 

@@ -32,4 +32,15 @@ def manual_inline():
     return keyboard_builder.as_markup()
 
 
+def tarif_inline():
+    keyboard_builder = InlineKeyboardBuilder()
+    keyboard_builder.button(text='30 дней - 250 ⭐', callback_data='месяц')
+    keyboard_builder.button(text='3 месяца - 700 ⭐', callback_data='3_месяца')
+    keyboard_builder.button(text='Полгода - 1300 ⭐', callback_data='полгода')
+    keyboard_builder.button(text='Год - 2250 ⭐', callback_data='год')
+    keyboard_builder.button(text='🔙 Назад', callback_data='назад_из_тарифов')
+
+    keyboard_builder.adjust(2, 2, 1)
+    return keyboard_builder.as_markup()
+
 
