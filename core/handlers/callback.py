@@ -47,12 +47,19 @@ async def back_from_manual(call: CallbackQuery, bot: Bot):
 
 async def select_tarif(call: CallbackQuery, bot: Bot):
     '''Выбор тарифа'''
-    photo = "core/pictures/tarif.jpg"
+    #photo = "core/pictures/tarif.jpg"
 
     await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
-                                        reply_markup=None)
-    await call.message.answer_photo(photo=FSInputFile(path=photo), caption='Выберите срок использования',
-                                    reply_markup=tarif_inline())
+                                        reply_markup=tarif_inline())
+    #await call.message.answer_photo(photo=FSInputFile(path=photo), caption='Выберите срок использования', reply_markup=tarif_inline())
+
+    await call.answer()
+
+
+async def back_from_tarif(call: CallbackQuery, bot: Bot):
+
+    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                        reply_markup=user_menu_inline())
 
     await call.answer()
 
