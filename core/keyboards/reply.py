@@ -44,3 +44,10 @@ def tarif_inline():
     return keyboard_builder.as_markup()
 
 
+def android_inline():
+    keyboard_builder = InlineKeyboardBuilder()
+    keyboard_builder.button(text='🔙 Назад', callback_data='назад_из_андроид')
+
+    keyboard_builder.adjust(1)
+    return keyboard_builder.as_markup()
+

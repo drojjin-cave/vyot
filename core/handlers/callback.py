@@ -2,7 +2,7 @@ from aiogram import Bot
 from aiogram.types import Message
 from aiogram.types import CallbackQuery, FSInputFile
 from core.utils.dbconnect import add_user
-from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline
+from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline, android_inline
 import core.utils.manuals as manuals
 
 
@@ -36,12 +36,8 @@ async def select_manual(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 async def back_from_manual(call: CallbackQuery, bot: Bot):
-    photo = "core/pictures/vpn.jpg"
-
     await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
-                                        reply_markup=None)
-    await call.message.answer_photo(photo=FSInputFile(path=photo), caption=manuals.TEXT_START,
-                                    reply_markup=user_menu_inline())
+                                        reply_markup=user_menu_inline())
 
     await call.answer()
 
@@ -74,9 +70,7 @@ async def select_help(call: CallbackQuery, bot: Bot):
 async def manual_android(call: CallbackQuery, bot: Bot):
     '''Инструкция андроид'''
     photo = "core/pictures/android-logo.jpg"
-
-    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
-    await call.message.answer_photo(photo=FSInputFile(path=photo), caption=manuals.MANUAL_ANDROID, reply_markup=manual_inline())
+    await call.message.answer_photo(photo=FSInputFile(path=photo), caption=manuals.MANUAL_ANDROID, reply_markup=android_inline())
 
     await call.answer()
 
@@ -84,9 +78,18 @@ async def manual_android(call: CallbackQuery, bot: Bot):
 async def manual_apple(call: CallbackQuery, bot: Bot):
     '''Инструкция айфон'''
     photo = "core/pictures/apple-logo.png"
+    await call.message.answer_photo(photo=FSInputFile(path=photo), caption=manuals.MANUAL_APPLE, reply_markup=android_inline())
 
-    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
-    await call.message.answer_photo(photo=FSInputFile(path=photo), caption=manuals.MANUAL_APPLE, reply_markup=manual_inline())
+
+    await call.answer()
+
+
+async def back_from_android(call: CallbackQuery, bot: Bot):
+    await call.message.delete()
+    #await bot.edit_message_caption(chat_id=call.from_user.id, message_id=call.message.message_id, caption='asdf')
+    #await bot.edit_message_media(chat_id=call.from_user.id, message_id=call.message.message_id, media='')
+    #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=manual_inline())
+
 
 
     await call.answer()

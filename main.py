@@ -45,6 +45,7 @@ async def start():
     # кнопки возврата
     dp.callback_query.register(back_from_manual, F.data == 'назад_из_инструкции')
     dp.callback_query.register(back_from_tarif, F.data == 'назад_из_тарифов')
+    dp.callback_query.register(back_from_android, F.data == 'назад_из_андроид')
 
     # меню инструкций
     dp.callback_query.register(manual_android, F.data == 'андроид')
