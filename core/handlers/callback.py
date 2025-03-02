@@ -1,6 +1,6 @@
 from aiogram import Bot
 from aiogram.types import Message
-from aiogram.types import CallbackQuery, FSInputFile
+from aiogram.types import CallbackQuery, FSInputFile, InputMediaPhoto
 from core.utils.dbconnect import add_user
 from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline, android_inline
 import core.utils.manuals as manuals
@@ -23,7 +23,7 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
 
 async def select_test(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('Тут профиль')
+    #await call.message.answer('Тут профиль') TODO: доделать тестовый период
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()
@@ -61,7 +61,8 @@ async def back_from_tarif(call: CallbackQuery, bot: Bot):
 
 async def select_help(call: CallbackQuery, bot: Bot):
 
-    await call.message.answer('Здесь помощь')
+    #await call.message.answer('Здесь помощь') TODO: Доделать помощь
+
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
     await call.answer()
