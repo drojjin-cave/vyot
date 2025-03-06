@@ -1,9 +1,15 @@
 import aiosqlite
 from aiogram.types import Message
 import asyncio
+from core.utils.db_quere import CREATE_TABLE
 
 message = Message
 
+
+async def check_db():
+    conn = await aiosqlite.connect('../database.db')
+    await conn.execute(CREATE_TABLE)
+    await conn.commit()
 
 async def get_user(id_tg):
     conn = await aiosqlite.connect('../database.db')
