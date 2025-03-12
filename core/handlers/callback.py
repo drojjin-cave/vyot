@@ -61,7 +61,7 @@ async def back_from_tarif(call: CallbackQuery, bot: Bot):
 
 async def select_help(call: CallbackQuery, bot: Bot):
 
-    #await call.message.answer('Здесь помощь') TODO: Доделать помощь
+    await call.message.answer('Здесь помощь') #TODO: Доделать помощь
 
     #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
 
