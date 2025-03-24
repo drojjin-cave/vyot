@@ -5,6 +5,7 @@ from aiogram import F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 import logging
+from core.utils.x3_UI import X3_UI
 
 
 from core.handlers.basic import *
@@ -30,6 +31,7 @@ async def start():
     bot = Bot(token=settings.bots.bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     dp = Dispatcher()
+
 
     dp.startup.register(start_bot)
     dp.shutdown.register(stop_bot)
