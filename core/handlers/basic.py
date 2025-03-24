@@ -7,17 +7,15 @@ from core.settings import settings
 from core.utils.x3_UI import X3_UI
 
 server = X3_UI()
-
+start_message_id = []
 async def get_start(message: Message, bot: Bot):
     photo = "core/pictures/vpn.jpg"
-    #await check_db()
 
-    #await bot.send_photo(message.from_user.id, photo=FSInputFile(path=photo), caption=text, reply_markup=user_menu_inline())
-    #check = await get_user(message.from_user.id)
     check = server.check_user(message.from_user.id)
     if not check:
         await bot.send_photo(message.from_user.id, photo=FSInputFile(path=photo), caption=manuals.TEXT_START, reply_markup=user_menu_inline())
     else:
-        await bot.send_photo(message.from_user.id, photo=FSInputFile(path=photo), caption=manuals.TEXT_START, reply_markup=active_user_menu())
+        mymessage = await bot.send_photo(message.from_user.id, photo=FSInputFile(path=photo), caption=manuals.TEXT_START, reply_markup=active_user_menu())
+        start_message_id.append(mymessage.message_id)
 
 

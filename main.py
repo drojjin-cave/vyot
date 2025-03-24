@@ -45,12 +45,17 @@ async def start():
     dp.callback_query.register(select_tarif, F.data == 'тарифы')
     dp.callback_query.register(select_help, F.data == 'помощь')
     dp.callback_query.register(select_admin, F.data == 'админ')
+    dp.callback_query.register(select_profile, F.data == 'профиль')
 
     # кнопки возврата
-    dp.callback_query.register(back_from_manual, F.data == 'назад_из_инструкции')
+    dp.callback_query.register(back, F.data == 'назад_из_инструкции')
     dp.callback_query.register(back_from_tarif, F.data == 'назад_из_тарифов')
-    dp.callback_query.register(back_from_android, F.data == 'назад_из_андроид')
+    dp.callback_query.register(select_manual, F.data == 'назад_из_андроид')
     dp.callback_query.register(back_from_admin, F.data == 'назад_из_админки')
+    dp.callback_query.register(back, F.data == 'назад')
+
+    #универсальная регистрация обработчика для разных профилей
+    #dp.callback_query.register(manual_apple, F.data in server.get_emails_user(Message.from_user.id))
 
     # меню инструкций
     dp.callback_query.register(manual_android, F.data == 'андроид')
