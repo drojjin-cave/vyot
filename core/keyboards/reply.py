@@ -2,6 +2,11 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, KeyboardButtonPol
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 
+active_user_menu_dict = {'👤 Профиль': 'попробовать',
+                    '📜 Инструкции': 'инструкции',
+                    '🪙 Тарифы': 'тарифы',
+                    '📢 Помощь': 'помощь'}
+
 def start_keyboard():
     keyboard_builder = InlineKeyboardBuilder()
     keyboard_builder.button(text='✅Принять правила использования', callback_data='правила')
@@ -62,3 +67,14 @@ def android_inline():
     keyboard_builder.adjust(1)
     return keyboard_builder.as_markup()
 
+
+def keyboard_gen(keyboars, sizes):
+    keyboard_builder = InlineKeyboardBuilder()
+    for text, calback_name in keyboars.items():
+        keyboard_builder.button(text=text, callback_data=calback_name)
+
+    keyboard_builder.adjust(*sizes)
+    return keyboard_builder.as_markup()
+
+def active_user_menu():
+    return keyboard_gen(active_user_menu_dict, (2, 2))

@@ -2,9 +2,10 @@ from aiogram import Bot
 from aiogram.types import Message
 from aiogram.types import CallbackQuery, FSInputFile, InputMediaPhoto
 from core.utils.dbconnect import add_user
-from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline, android_inline
+from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline, android_inline, active_user_menu
 from core.keyboards.admin_panel import admin_menu_main_inline
 import core.utils.manuals as manuals
+from core.handlers.basic import server
 
 photo = "core/pictures/vpn.jpg"
 async def select_ruls(call: CallbackQuery, bot: Bot):
@@ -48,8 +49,13 @@ async def select_manual(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 async def back_from_manual(call: CallbackQuery, bot: Bot):
-    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
-                                        reply_markup=user_menu_inline())
+    check = server.check_user(call.from_user.id)
+    if not check:
+        await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                            reply_markup=user_menu_inline())
+    else:
+        await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                            reply_markup=active_user_menu())
 
     await call.answer()
 
@@ -65,9 +71,13 @@ async def select_tarif(call: CallbackQuery, bot: Bot):
 
 
 async def back_from_tarif(call: CallbackQuery, bot: Bot):
-
-    await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
-                                        reply_markup=user_menu_inline())
+    check = server.check_user(call.from_user.id)
+    if not check:
+        await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                            reply_markup=user_menu_inline())
+    else:
+        await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id,
+                                            reply_markup=active_user_menu())
 
     await call.answer()
 

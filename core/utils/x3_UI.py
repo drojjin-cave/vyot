@@ -7,12 +7,15 @@ import uuid
 from pprint import pprint
 
 class X3_UI:
-    login = 'admroot'
-    password = 'VasiliyInokentievich2037%'
-    host = 'http://150.241.69.225:50969'
-    header = []
-    data = {"username": login, "password": password}
-    ses = requests.Session()
+    def __init__(self):
+        login = 'admroot'
+        password = 'VasiliyInokentievich2037%'
+        self.host = 'http://150.241.69.225:50969'
+        self.header = []
+        self.data = {"username": login, "password": password}
+        self.ses = requests.Session()
+
+        self.test_connect()
     # Тестовое соединение
     def test_connect(self):
         response = self.ses.post(f"{self.host}/login", data=self.data)
@@ -161,6 +164,14 @@ class X3_UI:
             if client['email'] == user_id:
                 for one in y:
                     if one['email'] == user_id:
-                        client['tgID'] = one['tgId']
+                        client['tgId'] = one['tgId']
                 return client
         return 'Пользователь не найден'
+
+
+    def check_user(self, tg_id):
+        all_clients = json.loads(self.list()['obj'][0]['settings'])['clients']
+        for client in all_clients:
+            if client['tgId'] and int(client['tgId']) == tg_id:
+                return True
+        return False
