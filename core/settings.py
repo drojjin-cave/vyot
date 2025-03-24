@@ -5,6 +5,7 @@ from dataclasses import dataclass
 class Bots:
     bot_token: str
     admin_id: int
+    admins_vpn: list
 
 
 @dataclass
@@ -19,8 +20,10 @@ def get_settings(path: str):
     return Settings(
         bots=Bots(
             bot_token=env.str("TOKEN"),
-            admin_id=env.int("ADMIN_ID")
+            admin_id=env.int("ADMIN_ID"),
+            admins_vpn=[int(id) for id in env.str("ADMINS_VPN").split()]
         )
     )
 
 settings = get_settings('input.txt')
+print(settings)
