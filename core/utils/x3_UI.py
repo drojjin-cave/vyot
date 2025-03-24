@@ -189,13 +189,13 @@ class X3_UI:
         data = self.client_stat(email)
         text = (f'<b>Ваша статистика</b>:\n'
                 f'👤 Имя: {email}\n'
-                f'💡 Активен: {'Да' if data['enable'] else 'Нет'}\n'
+                f'💡 Активен: {"Да" if data["enable"] else "Нет"}\n'
                 #f' Статус соединения:  Офлайн\n'
-                f'📅 Дата окончания: {'Неограниченно' if data['expiryTime'] == 0 else data['expiryTime']}\n'
-                f'🔼 Исходящий трафик: ↑ {self.trafic(data['up'])}\n'
-                f'🔽 Входящий трафик: ↓ {self.trafic(data['down'])}\n'
-                f'📊 Всего: ↑↓ {self.trafic(data['up'] + data['down'])}\n'
-                f'📋🔄 Обновлено: {datetime.datetime.now().strftime('%d.%m.%Y %H:%M')}')
+                f'📅 Дата окончания: {"Неограниченно" if data["expiryTime"] == 0 else data["expiryTime"]}\n'
+                f'🔼 Исходящий трафик: ↑ {self.trafic(data["up"])}\n'
+                f'🔽 Входящий трафик: ↓ {self.trafic(data["down"])}\n'
+                f'📊 Всего: ↑↓ {self.trafic(data["up"] + data["down"])}\n'
+                f'📋🔄 Обновлено: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}')
 
         return text
 
