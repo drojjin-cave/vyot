@@ -21,6 +21,17 @@ def user_menu_inline():
     keyboard_builder.adjust(2, 2)
     return keyboard_builder.as_markup()
 
+def admin_menu_inline():
+    keyboard_builder = InlineKeyboardBuilder()
+    keyboard_builder.button(text='▶️ Попробовать', callback_data='попробовать')
+    keyboard_builder.button(text='📜 Инструкции', callback_data='инструкции')
+    keyboard_builder.button(text='🪙 Тарифы', callback_data='тарифы')
+    keyboard_builder.button(text='📢 Помощь', callback_data='помощь')
+    keyboard_builder.button(text='⚙️ Админ-панель', callback_data='админ')
+
+    keyboard_builder.adjust(2, 2, 1)
+    return keyboard_builder.as_markup()
+
 
 def manual_inline():
     keyboard_builder = InlineKeyboardBuilder()

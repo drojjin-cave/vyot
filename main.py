@@ -15,6 +15,7 @@ from core.settings import settings
 from core.handlers.callback import *
 from core.utils.comands import set_commands
 from core.handlers.callback_tarif import *
+from core.handlers.callback_admin import *
 
 async def start_bot(bot: Bot):
     await set_commands(bot)
@@ -41,11 +42,13 @@ async def start():
     dp.callback_query.register(select_manual, F.data == 'инструкции')
     dp.callback_query.register(select_tarif, F.data == 'тарифы')
     dp.callback_query.register(select_help, F.data == 'помощь')
+    dp.callback_query.register(select_admin, F.data == 'админ')
 
     # кнопки возврата
     dp.callback_query.register(back_from_manual, F.data == 'назад_из_инструкции')
     dp.callback_query.register(back_from_tarif, F.data == 'назад_из_тарифов')
     dp.callback_query.register(back_from_android, F.data == 'назад_из_андроид')
+    dp.callback_query.register(back_from_admin, F.data == 'назад_из_админки')
 
     # меню инструкций
     dp.callback_query.register(manual_android, F.data == 'андроид')
@@ -56,6 +59,12 @@ async def start():
     dp.callback_query.register(thre_month_pay, F.data == '3_месяца')
     dp.callback_query.register(six_month_pay, F.data == 'полгода')
     dp.callback_query.register(year_pay, F.data == 'год')
+
+    #админ панель
+    dp.callback_query.register(get_active_users, F.data == 'пользователи')
+    dp.callback_query.register(add_user_hand, F.data == 'добавить_в_ручную')
+    dp.callback_query.register(static_of_user, F.data == 'статистика')
+    dp.callback_query.register(update_time_of_user, F.data == 'обновить')
 
 
 
