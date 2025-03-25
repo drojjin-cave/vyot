@@ -61,13 +61,10 @@ async def select_profile(call: CallbackQuery, bot: Bot):
         await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=keyboard_gen(data_keyboard))
 
     if len(data) == 1:
-        await bot.edit_message_caption(chat_id=call.from_user.id, message_id=start_message_id[0], caption=server.print_stat(data[0]),
-                                       reply_markup=keyboard_gen({'🔙 Назад':'назад'}))
-        #await bot.edit_message_text()
-        #await call.message.answer()
 
+        await call.message.edit_media(InputMediaPhoto(media=FSInputFile(path=photo), caption=server.print_stat(data[0])),
+                                      reply_markup=keyboard_gen({'🔙 Назад':'назад'}))
 
-    #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=manual_inline())
 
     await call.answer()
 
