@@ -44,7 +44,6 @@ class X3_UI:
                     x_time) + ",\"enable\":true,\"tgId\":\"" + str(tg_id) + "\",\"subId\":\"\"}]}"
         }
         resource = self.ses.post(f'{self.host}/panel/api/inbounds/addClient', headers=header, json=data1)
-        pprint(data1)
         return resource
 
     def time_active(self, user_id: str):

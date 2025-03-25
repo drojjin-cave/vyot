@@ -10,7 +10,8 @@ async def select_test(call: CallbackQuery, bot: Bot):
     user = 'client-' + call.from_user.username + '-free'
     server.add_client(days, call.from_user.id, user)
     data = server.get_emails_user(call.from_user.id)
-    answer = 'Приятного пользования!👽\n\n' + server.print_stat(data[0])
+    answer = ('Приятного пользования!👽\n\n' + '<i>Скопируйте ссылку ниже и переходите к инструкциям!</i>\n\n' +
+              '<b>Ссылка для подключения:</b>\n<blockquote>' + server.link(data[0]) + '</blockquote>' +'\n\n' + server.print_stat(data[0]))
     await call.message.edit_media(InputMediaPhoto(media=FSInputFile(path=photo), caption=answer),
                                   reply_markup=profile_menu())
 
