@@ -27,11 +27,11 @@ class X3_UI:
         return resource
 
     def add_client(self, day, tg_id, user_id):
-        epoch = datetime.datetime.fromtimestamp(0) - datetime.timedelta(hours=3)
+        epoch = datetime.datetime.fromtimestamp(0)
 
 
         x_time = int((datetime.datetime.now() - epoch).total_seconds() * 1000.0)
-        x_time += 86400000 * day - 10800000
+        x_time += 86400000 * day
         header = {"Accept": "application/json"}
         data1 = {
             "id": 1,
@@ -187,11 +187,12 @@ class X3_UI:
 
     def print_stat(self, email):
         data = self.client_stat(email)
+        date_end_subcribe = datetime.datetime.fromtimestamp(data["expiryTime"] // 1000).strftime('%d.%m.%Y %H:%M')
         text = (f'<b>Ваша статистика</b>:\n'
                 f'<blockquote>👤 Имя: {email}\n'
                 f'💡 Активен: {"Да" if data["enable"] else "Нет"}\n'
                 #f' Статус соединения:  Офлайн\n'
-                f'📅 Дата окончания: {"Неограниченно" if data["expiryTime"] == 0 else data["expiryTime"]}\n'
+                f'📅 Дата окончания: {"Неограниченно" if data["expiryTime"] == 0 else date_end_subcribe}\n'
                 f'🔼 Исходящий трафик: ↑ {self.trafic(data["up"])}\n'
                 f'🔽 Входящий трафик: ↓ {self.trafic(data["down"])}\n'
                 f'📊 Всего: ↑↓ {self.trafic(data["up"] + data["down"])}\n'

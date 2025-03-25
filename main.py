@@ -18,6 +18,7 @@ from core.handlers.callback import *
 from core.utils.comands import set_commands
 from core.handlers.callback_tarif import *
 from core.handlers.callback_admin import *
+from core.handlers.callback_3xUi import *
 
 async def start_bot(bot: Bot):
     await set_commands(bot)

@@ -23,12 +23,7 @@ async def select_ruls(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 
-async def select_test(call: CallbackQuery, bot: Bot):
 
-    #await call.message.answer('Тут профиль') TODO: доделать тестовый период
-    #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
-
-    await call.answer()
 
 
 async def select_admin(call: CallbackQuery, bot: Bot):
