@@ -14,11 +14,6 @@ async def select_test(call: CallbackQuery, bot: Bot):
     await call.message.edit_media(InputMediaPhoto(media=FSInputFile(path=photo), caption=answer),
                                   reply_markup=profile_menu())
 
-
-
-    #await call.message.answer('Тут профиль') #TODO: доделать тестовый период
-    #await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=None)
-
     await call.answer()
 
 

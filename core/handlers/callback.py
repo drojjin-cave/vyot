@@ -6,7 +6,7 @@ from core.keyboards.reply import user_menu_inline, manual_inline, tarif_inline, 
 from core.keyboards.admin_panel import admin_menu_main_inline
 import core.utils.manuals as manuals
 from core.handlers.basic import server
-from main import start_message_id
+from core.keyboards.profile_key import profile_menu
 photo = "core/pictures/vpn.jpg"
 async def select_ruls(call: CallbackQuery, bot: Bot):
     data = call.data
@@ -58,7 +58,7 @@ async def select_profile(call: CallbackQuery, bot: Bot):
     if len(data) == 1:
 
         await call.message.edit_media(InputMediaPhoto(media=FSInputFile(path=photo), caption=server.print_stat(data[0])),
-                                      reply_markup=keyboard_gen({'🔙 Назад':'назад'}))
+                                      reply_markup=profile_menu())
 
 
     await call.answer()

@@ -76,6 +76,9 @@ async def start():
     dp.callback_query.register(static_of_user, F.data == 'статистика')
     dp.callback_query.register(update_time_of_user, F.data == 'обновить')
 
+    #профиль
+    dp.callback_query.register(renew, F.data == 'продлить')
+    dp.callback_query.register(share, F.data == 'поделиться')
 
 
 
