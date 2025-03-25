@@ -50,7 +50,7 @@ async def select_manual(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 async def select_profile(call: CallbackQuery, bot: Bot):
-
+    server.test_login()
     data = server.get_emails_user(call.from_user.id)
 
     if len(data) > 1:
@@ -139,8 +139,8 @@ async def manual_apple(call: CallbackQuery, bot: Bot):
     await call.answer()
 
 
-async def back_from_android(call: CallbackQuery, bot: Bot):
-    await call.message.delete()
+async def back_from_logs(call: CallbackQuery, bot: Bot):
+
 
 
 

@@ -15,9 +15,9 @@ class X3_UI:
         self.data = {"username": login, "password": password}
         self.ses = requests.Session()
 
-        self.test_connect()
+        self.test_login()
     # Тестовое соединение
-    def test_connect(self):
+    def test_login(self):
         response = self.ses.post(f"{self.host}/login", data=self.data)
         return response
 

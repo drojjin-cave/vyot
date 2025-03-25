@@ -67,6 +67,13 @@ def android_inline():
     keyboard_builder.adjust(1)
     return keyboard_builder.as_markup()
 
+def back_in_menu_inline():
+    keyboard_builder = InlineKeyboardBuilder()
+    keyboard_builder.button(text='🔙 Назад', callback_data='назад')
+
+    keyboard_builder.adjust(1)
+    return keyboard_builder.as_markup()
+
 
 def keyboard_gen(keyboars, sizes=(2,)):
     keyboard_builder = InlineKeyboardBuilder()

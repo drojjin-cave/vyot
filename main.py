@@ -6,6 +6,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 import logging
 from core.utils.x3_UI import X3_UI
+from core.handlers import send_media
 
 
 from core.handlers.basic import *
@@ -36,6 +37,7 @@ async def start():
     dp.startup.register(start_bot)
     dp.shutdown.register(stop_bot)
     dp.message.register(get_start, CommandStart())
+    dp.message.register(send_media.send_logs, Command(commands='logs'))
 
     # Главное меню
     dp.callback_query.register(select_ruls, F.data == 'правила')
@@ -72,6 +74,7 @@ async def start():
     dp.callback_query.register(add_user_hand, F.data == 'добавить_в_ручную')
     dp.callback_query.register(static_of_user, F.data == 'статистика')
     dp.callback_query.register(update_time_of_user, F.data == 'обновить')
+
 
 
 
