@@ -56,7 +56,7 @@ async def select_profile(call: CallbackQuery, bot: Bot):
         await bot.edit_message_reply_markup(chat_id=call.from_user.id, message_id=call.message.message_id, reply_markup=keyboard_gen(data_keyboard))
 
     if len(data) == 1:
-        text = server.print_stat(data[0]) + '\n<b>Ссылка для подключения:</b>\n<blockquote>' + server.link(data[0]) + '</blockquote>'
+        text = server.print_stat(data[0]) + '\n<b>Ссылка для подключения:</b>\n<blockquote><code>' + server.link(data[0]) + '</code></blockquote>'
         await call.message.edit_media(InputMediaPhoto(media=FSInputFile(path=photo), caption=text),
                                       reply_markup=profile_menu())
 
