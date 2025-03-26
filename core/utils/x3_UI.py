@@ -38,8 +38,8 @@ class X3_UI:
             "settings":
                 "{\"clients\":"
                 "[{\"id\":\"" + str(uuid.uuid1()) + "\","
-                                                    "\"alterId\":90,\"email\":\"" + str(user_id) + "\","
-                                                                                                   "\"limitIp\":3,\"totalGB\":0,"
+                                                    "\"flow\":\"xtls-rprx-vision\",\"email\":\"" + str(user_id) + "\","
+                                                                                                   "\"limitIp\":0,\"totalGB\":0,"
                                                                                                    "\"expiryTime\":" + str(
                     x_time) + ",\"enable\":true,\"tgId\":\"" + str(tg_id) + "\",\"subId\":\"\"}]}"
         }
@@ -75,34 +75,34 @@ class X3_UI:
                 val += 10800
                 date_x = datetime.datetime.fromtimestamp(val)
                 # date_x += datetime.timedelta(day)
-                epoch = datetime.datetime.fromtimestamp(0) - datetime.timedelta(hours=3)
+                epoch = datetime.datetime.fromtimestamp(0)
                 x_time = int((date_x - epoch).total_seconds() * 1000.0)
-                x_time += 86400000 * day - 10800000
+                x_time += 86400000 * day
                 header = {"Accept": "application/json"}
                 data1 = {
                     "id": 1,
                     "settings":
                         "{\"clients\":"
                         "[{\"id\":\"" + str(key) + "\","
-                                                   "\"alterId\":90,\"email\":\"" + str(user_id) + "\","
-                                                                                                  "\"limitIp\":3,\"totalGB\":0,"
+                                                   "\"flow\":\"xtls-rprx-vision\",\"email\":\"" + str(user_id) + "\","
+                                                                                                  "\"limitIp\":0,\"totalGB\":0,"
                                                                                                   "\"expiryTime\":" + str(
                             x_time) + ",\"enable\":true,\"tgId\":\"" + str(user_id) + "\",\"subId\":\"\"}]}"
                 }
                 resource = self.ses.post(f'{self.host}/panel/api/inbounds/updateClient/{key}', headers=header, json=data1)
                 return resource
             else:
-                epoch = datetime.datetime.fromtimestamp(0) - datetime.timedelta(hours=3)
+                epoch = datetime.datetime.fromtimestamp(0)
                 x_time = int((datetime.datetime.now() - epoch).total_seconds() * 1000.0)
-                x_time += 86400000 * day - 10800000
+                x_time += 86400000 * day
                 header = {"Accept": "application/json"}
                 data1 = {
                     "id": 1,
                     "settings":
                         "{\"clients\":"
                         "[{\"id\":\"" + str(key) + "\","
-                                                   "\"alterId\":90,\"email\":\"" + str(user_id) + "\","
-                                                                                                  "\"limitIp\":3,\"totalGB\":0,"
+                                                   "\"flow\":\"xtls-rprx-vision\",\"email\":\"" + str(user_id) + "\","
+                                                                                                  "\"limitIp\":0,\"totalGB\":0,"
                                                                                                   "\"expiryTime\":" + str(
                             x_time) + ",\"enable\":true,\"tgId\":\"" + str(user_id) + "\",\"subId\":\"\"}]}"
                 }
@@ -126,7 +126,10 @@ class X3_UI:
         x = json.loads(self.list()['obj'][0]['streamSettings'])
         tcp = x['network']
         reality = x['security']
-        val = f"vless://{id}@vpn-x3.ru:52687/?type={tcp}&security={reality}&fp=chrome&pbk=T_95HnSovtH9WNr_XfaJ9iL7xnwp96p8E2A8Q3_t_xk&sni=microsoft.com&sid=24705084&spx=%2F#VPN-X3-{user_id}"
+        pbk = x['realitySettings']['settings']['publicKey']
+        fp = x['realitySettings']['settings']['fingerprint']
+        dest = x['realitySettings']['dest'][:x['realitySettings']['dest'].index(':')]
+        val = f"vless://{id}@150.241.69.225:443?type={tcp}&security={reality}&pbk={pbk}&fp={fp}&sni={dest}&sid=d1&spx=%2F&flow=xtls-rprx-vision#vpnams-{user_id}"
         return val
 
     def activ_list(self):
