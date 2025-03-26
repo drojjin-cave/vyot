@@ -7,7 +7,10 @@ photo = "core/pictures/vpn.jpg"
 
 async def select_test(call: CallbackQuery, bot: Bot):
     days = 3
-    user = 'client-' + call.from_user.username + '-free'
+    if call.from_user.username:
+        user = 'client-' + call.from_user.username + '-free'
+    else:
+        user = 'client-' + call.from_user.first_name.replace(' ', '_') + '-free'
     server.add_client(days, call.from_user.id, user)
     data = server.get_emails_user(call.from_user.id)
     answer = ('Приятного пользования!👽\n\n' + '<i>Скопируйте ссылку ниже и переходите к инструкциям!</i>\n\n' +
