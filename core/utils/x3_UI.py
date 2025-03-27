@@ -23,6 +23,7 @@ class X3_UI:
 
     # Список клиентов
     def list(self):
+        self.test_login()
         resource = self.ses.get(f'{self.host}/panel/api/inbounds/list', json=self.data).json()
         return resource
 
