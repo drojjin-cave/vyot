@@ -20,7 +20,7 @@ async def send_logs(message: Message, bot:Bot,  n=30):
     date_update_info = datetime.now(timezone.utc)
     date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d-%m-%Y %H-%M')
 
-    log_out = f'/home/drojjin/.pm2/logs/tg-vyot-logs/{date_update_info}.log'
+    log_out = f'/home/drojjin/vyot-bot/logs/{date_update_info}.log'
 
     log_local = r'C:\Users\Admin\Desktop\Документы\!BOTS\vyot-bot\vyot\tg-vyot-error.log'
     log_local_out = f'C:\\Users\\Admin\\Desktop\Документы\\!BOTS\\vyot-bot\\vyot\\{date_update_info}.log'
