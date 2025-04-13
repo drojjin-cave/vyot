@@ -1,11 +1,11 @@
 from aiogram import Bot
 from aiogram.types import Message, FSInputFile, InputMediaPhoto, InputMediaDocument
-import core.utils.manuals as manuals
-from core.keyboards.reply import android_inline, back_in_menu_inline
+import moduls.utils.static_text as manuals
+
 
 async def send_logs(message: Message, bot: Bot):
     log = r'/home/drojjin/.pm2/logs/tg-vyot-error.log'
-    photo = "core/pictures/vpn.jpg"
+    photo = "moduls/pictures/vpn.jpg"
     await message.delete()
     #media = [InputMediaPhoto(media=FSInputFile(path=photo)), InputMediaDocument(media=FSInputFile(path=log))]
     #await bot.edit_message_media(media=media, chat_id=message.chat.id)

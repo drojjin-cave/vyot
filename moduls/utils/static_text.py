@@ -31,3 +31,12 @@ TEXT_START = """
 🔄 Подключение за 1 клик без сложных настроек
 </blockquote>
 """
+
+
+PAY_MONTH = """
+Для оплаты подписки нажмите кнопку ниже👇
+"""
+
+MAIN_PHOTO_PATH = "moduls/pictures/vpn.jpg"
+ANDROID_PHOTO_PATH = "moduls/pictures/android-logo.jpg"
+APPLE_PHOTO_PATH = "moduls/pictures/apple-logo.png"

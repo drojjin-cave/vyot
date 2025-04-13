@@ -1,8 +1,7 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, KeyboardButtonPollType
-from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 
-def admin_menu_main_inline():
+def admin_menu_main_keyboard():
     keyboard_builder = InlineKeyboardBuilder()
     keyboard_builder.button(text='Активные пользователи', callback_data='пользователи')
     keyboard_builder.button(text='Добавить в ручную', callback_data='добавить_в_ручную')

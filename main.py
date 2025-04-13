@@ -1,87 +1,28 @@
+import asyncio
+import logging
+
 from aiogram import Bot, Dispatcher
-from aiogram.types import Message
-from aiogram.filters import Command, CommandStart
-from aiogram import F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-import logging
-from core.utils.x3_UI import X3_UI
-from core.handlers import send_media
 
 
-from core.handlers.basic import *
-import asyncio
-from core.settings import settings
+from moduls.handlers.basic import basic_handlers
+from moduls.handlers.paymant import payment_messages_handlers
+from moduls.handlers.manuals import manuals_handlers
+from moduls.handlers.profile import profile_handlers
 
+from moduls.settings import settings
 
-from core.handlers.callback import *
-from core.utils.comands import set_commands
-from core.handlers.callback_tarif import *
-from core.handlers.callback_admin import *
-from core.handlers.callback_3xUi import *
+dp = Dispatcher()
 
-async def start_bot(bot: Bot):
-    await set_commands(bot)
-    await bot.send_message(settings.bots.admin_id, text='Бот запущен!')
-
-
-async def stop_bot(bot: Bot):
-    await bot.send_message(settings.bots.admin_id, text='Бот остановлен!')
-
-# тест коммита 2
-async def start():
+async def main():
     bot = Bot(token=settings.bots.bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
-    dp = Dispatcher()
-
-
-    dp.startup.register(start_bot)
-    dp.shutdown.register(stop_bot)
-    dp.message.register(get_start, CommandStart())
-    dp.message.register(send_media.send_logs, Command(commands='logs'))
-
-    # Главное меню
-    dp.callback_query.register(select_ruls, F.data == 'правила')
-
-    dp.callback_query.register(select_test, F.data == 'попробовать')
-    dp.callback_query.register(select_manual, F.data == 'инструкции')
-    dp.callback_query.register(select_tarif, F.data == 'тарифы')
-    dp.callback_query.register(select_help, F.data == 'помощь')
-    dp.callback_query.register(select_admin, F.data == 'админ')
-    dp.callback_query.register(select_profile, F.data == 'профиль')
-
-    # кнопки возврата
-    dp.callback_query.register(back, F.data == 'назад_из_инструкции')
-    dp.callback_query.register(back_from_tarif, F.data == 'назад_из_тарифов')
-    dp.callback_query.register(select_manual, F.data == 'назад_из_андроид')
-    dp.callback_query.register(back_from_admin, F.data == 'назад_из_админки')
-    dp.callback_query.register(back, F.data == 'назад')
-
-    #универсальная регистрация обработчика для разных профилей
-    #dp.callback_query.register(manual_apple, F.data in server.get_emails_user(Message.from_user.id))
-
-    # меню инструкций
-    dp.callback_query.register(manual_android, F.data == 'андроид')
-    dp.callback_query.register(manual_apple, F.data == 'айфон')
-
-    #тарифы
-    dp.callback_query.register(month_pay, F.data == 'месяц')
-    dp.callback_query.register(thre_month_pay, F.data == '3_месяца')
-    dp.callback_query.register(six_month_pay, F.data == 'полгода')
-    dp.callback_query.register(year_pay, F.data == 'год')
-
-    #админ панель
-    dp.callback_query.register(get_active_users, F.data == 'пользователи')
-    dp.callback_query.register(add_user_hand, F.data == 'добавить_в_ручную')
-    dp.callback_query.register(static_of_user, F.data == 'статистика')
-    dp.callback_query.register(update_time_of_user, F.data == 'обновить')
-
-    #профиль
-    dp.callback_query.register(renew, F.data == 'продлить')
-    dp.callback_query.register(share, F.data == 'поделиться')
-
-
-
+    dp.include_routers(basic_handlers,
+                       profile_handlers,
+                       payment_messages_handlers,
+                       manuals_handlers
+                       )
 
     try:
         await dp.start_polling(bot)
@@ -90,5 +31,6 @@ async def start():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    asyncio.run(start())
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s : [%(levelname)s] [%(name)s] : %(message)s")
+    logging.getLogger("aiogram.event").setLevel(logging.WARNING)
+    asyncio.run(main())

@@ -1,9 +1,9 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from core.keyboards.reply import keyboard_gen
+from moduls.keyboards.main_keyboard import keyboard_gen
 
 profile_menu_dict = {'📅 Продлить': 'продлить',
                     '🔀 Поделиться': 'поделиться',
-                    '🔙 Назад': 'назад'}
+                    '🔙 Назад': 'назад из профиля'}
 
 def profile_menu():
     return keyboard_gen(profile_menu_dict)
