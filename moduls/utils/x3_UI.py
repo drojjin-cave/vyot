@@ -195,7 +195,7 @@ class X3_UI:
         date_update_info = (date_update_info + datetime.timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M')
 
         date_end_subcribe = datetime.datetime.fromtimestamp(data["expiryTime"] // 1000)
-        # date_end_subcribe = (date_end_subcribe + datetime.timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M')
+        date_end_subcribe = (date_end_subcribe + datetime.timedelta(hours=5, minutes=0)).strftime('%d.%m.%Y %H:%M')
 
         text = (f'<b>Ваша статистика</b>:\n'
                 f'<blockquote>👤 Имя: {email}\n'
