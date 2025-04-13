@@ -34,7 +34,7 @@ async def send_logs(message: Message, bot: Bot, n=30):
         with open(log_out, mode='w') as logs_out:
             logs_out.write("".join(logs[-1:n:-1]))
 
-        await bot.send_document(admin_chanel, document=FSInputFile(path=log_local_out),
+        await bot.send_document(admin_chanel, document=FSInputFile(path=log_out),
                                 caption=f'Логи по запросу <b>{message.from_user.username}</b>')
 
 async def get_active_users(call: CallbackQuery, bot: Bot):
