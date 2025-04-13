@@ -13,17 +13,19 @@ ADMINS_VPN = settings.bots.admins_vpn
 admin_handlers = Router(name=__name__)
 
 @admin_handlers.message(Command("logs"))
-async def send_logs(message: Message, bot:Bot,  n=30):
+async def send_logs(message: Message, bot: Bot, n=30):
     n = int("-" + str(n))
     log = r'/home/drojjin/.pm2/logs/tg-vyot-error.log'
 
     date_update_info = datetime.now(timezone.utc)
-    date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d-%m-%Y %H-%M')
+    date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H-%M')
 
     log_out = f'/home/drojjin/vyot-bot/logs/{date_update_info}.log'
 
     log_local = r'C:\Users\Admin\Desktop\Документы\!BOTS\vyot-bot\vyot\tg-vyot-error.log'
-    log_local_out = f'C:\\Users\\Admin\\Desktop\Документы\\!BOTS\\vyot-bot\\vyot\\{date_update_info}.log'
+    log_local_out = f'C:\\Users\\Admin\\Desktop\Документы\\!BOTS\\vyot-bot\\vyot\\logs\\{date_update_info}.log'
+
+    admin_chanel = "-1002636005700"
 
     await message.delete()
     if message.from_user.id in ADMINS_VPN:
@@ -31,7 +33,9 @@ async def send_logs(message: Message, bot:Bot,  n=30):
             logs = logs.readlines()
         with open(log_out, mode='w') as logs_out:
             logs_out.write("".join(logs[-1:n:-1]))
-        await message.answer_document(document=FSInputFile(path=log_out), caption='Логи')
+
+        await bot.send_document(admin_chanel, document=FSInputFile(path=log_local_out),
+                                caption=f'Логи по запросу <b>{message.from_user.username}</b>')
 
 async def get_active_users(call: CallbackQuery, bot: Bot):
     '''Активные пользователи'''
