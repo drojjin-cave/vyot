@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
-
+from moduls.handlers.admin_panel import admin_handlers
 from moduls.handlers.basic import basic_handlers
 from moduls.handlers.paymant import payment_messages_handlers
 from moduls.handlers.manuals import manuals_handlers
@@ -21,7 +21,8 @@ async def main():
     dp.include_routers(basic_handlers,
                        profile_handlers,
                        payment_messages_handlers,
-                       manuals_handlers
+                       manuals_handlers,
+                       admin_handlers
                        )
 
     try:
