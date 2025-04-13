@@ -210,3 +210,10 @@ class X3_UI:
             traf /= 1024
             cnt += 1
         return f'{round(traf, 2)} {names[cnt]}'
+
+
+if __name__ == '__main__':
+    server = X3_UI()
+    email = 'client-roza_modem-free'
+    data = server.client_stat(email)
+    pprint(data)
