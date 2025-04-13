@@ -190,6 +190,10 @@ class X3_UI:
 
     def print_stat(self, email):
         data = self.client_stat(email)
+
+        date_update_info = datetime.datetime.now(datetime.timezone.utc)
+        date_update_info = (date_update_info + datetime.timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M')
+
         date_end_subcribe = datetime.datetime.fromtimestamp(data["expiryTime"] // 1000).strftime('%d.%m.%Y %H:%M')
         text = (f'<b>Ваша статистика</b>:\n'
                 f'<blockquote>👤 Имя: {email}\n'
@@ -199,7 +203,7 @@ class X3_UI:
                 f'🔼 Исходящий трафик: ↑ {self.trafic(data["up"])}\n'
                 f'🔽 Входящий трафик: ↓ {self.trafic(data["down"])}\n'
                 f'📊 Всего: ↑↓ {self.trafic(data["up"] + data["down"])}\n'
-                f'📋🔄 Обновлено: {datetime.datetime.now().strftime("%d.%m.%Y %H:%M")}</blockquote>')
+                f'📋🔄 Обновлено: {date_update_info}</blockquote>')
 
         return text
 
