@@ -20,6 +20,8 @@ async def manual_android(call: CallbackQuery, bot: Bot):
     '''Инструкция андроид'''
     await call.message.edit_media(InputMediaPhoto(media=FSInputFile(path=ANDROID_PHOTO_PATH), caption=MANUAL_ANDROID),
                                   reply_markup=back_from_manuals_keyboard())
+    a = 6 / 0
+
     await call.answer()
 
 

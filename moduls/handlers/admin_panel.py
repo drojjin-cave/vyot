@@ -1,5 +1,4 @@
 import traceback
-from inspect import Traceback
 
 from aiogram import Bot, Router, F
 from aiogram.enums import ParseMode
@@ -51,10 +50,14 @@ async def error_handler(event: ErrorEvent, bot: Bot):
     date_update_info = datetime.now(timezone.utc)
     date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M:%S')
 
+    error = traceback.format_exc()
+
     text = (f'Возникла ошибка!\n'
             f'Время - <b>{date_update_info}</b>\n\n'
-            f'<b>Ошибка:</b>\n'
-            f'<blockquote>{event.exception}</blockquote>'
+            f'<b>Название ошибки:</b>\n'
+            f'<blockquote>{event.exception}</blockquote>\n\n'
+            f'<b>Стек вызова:</b>\n'
+            f'<blockquote>{error}</blockquote>\n'
             )
 
     await bot.send_message(admin_chanel, text=text)
