@@ -45,7 +45,7 @@ async def send_logs(message: Message, bot: Bot, n=30):
 
 
 @admin_handlers.error()
-async def error_handler(bot: Bot):
+async def error_handler(event: ErrorEvent, bot: Bot):
 
 
     date_update_info = datetime.now(timezone.utc)
