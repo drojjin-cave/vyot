@@ -11,7 +11,7 @@ manuals_handlers = Router(name=__name__)
 @manuals_handlers.callback_query(F.data == 'инструкции')
 async def select_manual(call: CallbackQuery):
     await call.message.edit_reply_markup(reply_markup=manual_keyboard())
-
+    print(4/0)
     await call.answer()
 
 
