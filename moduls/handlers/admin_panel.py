@@ -1,3 +1,4 @@
+import logging
 import traceback
 
 from aiogram import Bot, Router, F
@@ -51,6 +52,10 @@ async def error_handler(event: ErrorEvent, bot: Bot):
     date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M:%S')
 
     error = traceback.format_exc()
+
+    logging.exception(Exception)
+    # logging.info(
+    #     f'Пользователь {message.from_user.username} {message.from_user.id} оплатил тариф "{message.successful_payment.invoice_payload.upper()}"')
 
     text = (f'Возникла ошибка!\n'
             f'Время - <b>{date_update_info}</b>\n\n'
