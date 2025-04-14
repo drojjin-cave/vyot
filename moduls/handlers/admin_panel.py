@@ -45,7 +45,7 @@ async def send_logs(message: Message, bot: Bot, n=30):
 
 
 @admin_handlers.error()
-async def error_handler(event: ErrorEvent, bot: Bot):
+async def error_handler(bot: Bot):
 
 
     date_update_info = datetime.now(timezone.utc)
@@ -56,16 +56,14 @@ async def error_handler(event: ErrorEvent, bot: Bot):
     error = error[start_last_stack:]
 
 
-    #logging.exception(Exception)
+    logging.error(f'Ошибка! {error} Время {date_update_info}')
     # logging.info(
     #     f'Пользователь {message.from_user.username} {message.from_user.id} оплатил тариф "{message.successful_payment.invoice_payload.upper()}"')
 
     text = (f'Возникла ошибка!\n'
             f'Время - <b>{date_update_info}</b>\n\n'
-            f'<b>Название ошибки:</b>\n'
-            f'<blockquote>{event.exception}</blockquote>\n\n'
-            f'<b>Стек вызова:</b>\n'
-            f'<blockquote>{error}</blockquote>\n'
+            f'<b>Ошибка:</b>\n'
+            f'<blockquote>{error}</blockquote>'
             )
 
     await bot.send_message(admin_chanel, text=text)
