@@ -52,8 +52,9 @@ async def error_handler(event: ErrorEvent, bot: Bot):
     date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M:%S')
 
     error = ''.join(traceback.format_stack())
+    print(error)
 
-    logging.exception(Exception)
+    #logging.exception(Exception)
     # logging.info(
     #     f'Пользователь {message.from_user.username} {message.from_user.id} оплатил тариф "{message.successful_payment.invoice_payload.upper()}"')
 
