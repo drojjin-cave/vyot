@@ -56,7 +56,7 @@ async def error_handler(event: ErrorEvent, bot: Bot):
     error = error[start_last_stack:]
 
 
-    logging.error(f'Ошибка! {error} Время {date_update_info}')
+    logging.error(f'Время ошибки - {date_update_info}\n {error}')
     # logging.info(
     #     f'Пользователь {message.from_user.username} {message.from_user.id} оплатил тариф "{message.successful_payment.invoice_payload.upper()}"')
 
