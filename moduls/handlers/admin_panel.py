@@ -52,6 +52,9 @@ async def error_handler(event: ErrorEvent, bot: Bot):
     date_update_info = (date_update_info + timedelta(hours=7, minutes=0)).strftime('%d.%m.%Y %H:%M:%S')
 
     error = traceback.format_exc()
+    start_last_stack = error.rfind('File')
+    error = error[start_last_stack:]
+
 
     #logging.exception(Exception)
     # logging.info(
